@@ -18,7 +18,6 @@ The most popular songs are more likely to have a music video or other performanc
 * scrapesubcategories.py
 * scrapeissues.py
 * scraperankings.py
-  * recoverrankings.py (only for recovering at the final step)
 
 ### Error recovery
 
