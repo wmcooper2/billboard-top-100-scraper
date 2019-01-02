@@ -1,21 +1,25 @@
-#!/usr/bin/env python3
-"""Constants for scraping www.billboard.com"""
-
+"""Constants for Billboard Top 100 scraping program."""
 #stand lib
 from pathlib import Path
 
 #3rd party
 from bs4 import SoupStrainer
 
-
+#Program dirs/files
 CWD             = str(Path().cwd())
-HOME            = "https://www.billboard.com"
 A_TAGS          = SoupStrainer("a")
 DIVS            = SoupStrainer("div")
-YEARS           = CWD+"/../data/years.txt"
-YEARLINKS       = CWD+"/../data/yearlinks.txt"
-SUBCATEGORYLINKS= CWD+"/../data/subcategories.txt"
-ISSUELINKS      = CWD+"/../data/issuelinks.txt"
-RANKINGS_DIR    = CWD+"/../rankings/"
+DATADIR         = CWD+"/../data/"
+
 ERRORS          = CWD+"/../errors.txt"
 ERRORS_NEW      = CWD+"/../errors_new.txt"
+RANKINGS_DIR    = CWD+"/../rankings/"
+
+ISSUELINKS      = DATADIR+"issuelinks.txt"
+SUBCATEGORYLINKS= DATADIR+"subcategories.txt"
+YEARS           = DATADIR+"yearslinks.txt"
+#YEARLINKS       = DATADIR+"yearlinks.txt"
+
+#urls
+HOMEPAGE        = "https://www.billboard.com"
+YEARSPAGE       = HOMEPAGE+"/archive/charts"
