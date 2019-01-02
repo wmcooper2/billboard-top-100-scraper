@@ -1,6 +1,5 @@
 """Utility module Lyric Scraper program."""
 #stand lib
-from glob import glob
 import json
 from pathlib import Path
 import re
@@ -55,6 +54,10 @@ def get_soup(link, filter_=None):
     return BeautifulSoup(request.content, "html.parser", 
         parse_only=filter_)
 
+def get_year(url):
+    """Gets the year from 'url'. Returns String"""
+    return str(Path(url).parts[-1])
+
 def ensure_exists(string):
     """Makes 'string' dir if doesn't exist. Returns None."""
     if not Path(string).exists():
@@ -89,20 +92,6 @@ def save_append(list_, location):
             f.write(element)
             f.write("\n")
 
-#test manually, for now
-def save_json(json_obj, file_name):
-    """Saves 'json_obj' to 'file_name'. Returns None."""
-    dumping = json.dumps(json_obj, sort_keys=True, indent=4)
-    with open(file_name, "a+") as file_obj:
-        file_obj.write(dumping)
-
-#test manually, for now
-def load_json(file_path):
-    """Loads a json file. Returns Json object."""
-    with open(file_path) as file_obj:
-        artist_list = json.loads(file_obj.read())
-    return artist_list 
-
 #def lines_in_file(file_):
 def count_unique_lines(file_):
     """Counts unique lines in 'file_'. Returns Integer."""
@@ -120,8 +109,6 @@ def load_file_list(file_):
     temp = []
     with open(file_, "r") as f:
         [temp.append(line.strip()) for line in f.readlines()]
-#        for line in f.readlines():
-#            temp.append(line.strip())
     return temp
 
 def count_files(dir_):
@@ -148,7 +135,6 @@ def scrape_setup(prev_fin, cur_err, cur_fin):
             - current stage finished file
         Returns 2 Lists."""
     todo = list(set(load_file_list(prev_fin)))
-#                    +load_file_list(cur_err))) #temp solution for artist scraping stage problem, freezes with this link or the one after it; https://www.lyrics.com/artist/100%-DJ/1851504
     finished = load_file_list(cur_fin)
 #    [todo.remove(el) for el in finished]
     for el in finished:

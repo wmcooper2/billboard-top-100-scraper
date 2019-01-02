@@ -1,7 +1,6 @@
 """Scrapes the year-links from the main page."""
 #custom
 from constants import *
-#import scrapingtools as *
 from scrapeutil import *
 
 def scrape():
@@ -12,7 +11,7 @@ def scrape():
     links = get_links(soup, "\/archive\/charts\/[0-9]*")
     links = get_hrefs(links)
     links = list(map(lambda x: HOMEPAGE+x, links))
-    save(links, "../data/years.txt")
+    save(links, YEAR)
     print("--- SCRAPING YEARS, FINISHED ---")
 
 if __name__ == "__main__":

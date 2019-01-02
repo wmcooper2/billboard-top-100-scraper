@@ -11,9 +11,9 @@ import requests
 #custom
 from constants import *
 
-def add_base_url(string):
-    """Prepends prefix to string. Returns String."""
-    return HOME + string
+#def add_base_url(string):
+#    """Prepends prefix to string. Returns String."""
+#    return HOME + string
 
 def persistent_request(url):
     """Makes a single request multiple times until successful.
