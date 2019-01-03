@@ -1,44 +1,53 @@
-#!/usr/bin/env python3
-"""Scrape the song rankings. This is the final step to get the data I want."""
-
-#stand lib
-from pprint import pprint
-from pathlib import Path
-from time import sleep
-
-#3rd party
-from bs4 import BeautifulSoup
-
+"""Scrape song rankings from www.billboard.com."""
 #custom
-import scrapingtools as tools
 from constants import *
+from scrapeutil import *
 
 def has_datatitle(tag):
     """Checks if a tag has 'data-title' in it. Returns Boolean.'"""
     return tag.has_attr("data-title") 
 
-if __name__ == "__main__":
-    issuedates = tools.load_list(ERRORS)
-    for issue in issuedates:
-        try:
-            file_parts = issue.split("/")
-            file_name = "_".join(file_parts[-2:])+".txt"
-            soup = tools.get_soup(issue, filter_=DIVS)
-            div_soup = soup.find_all("div")
+def format_file_name(url):
+    """Formats a file name. Returns String."""
+    file_parts = url.split("/")
+    return "_".join(file_parts[-2:])+".txt"
 
+def save_ranking(file_, div_el):
+    """Appends ranking to 'file'. Returns None."""
+    with open(RANKINGDIR+file_, "a+") as f:
+        f.write(div_el.get("data-rank"))
+        f.write(",")                
+        f.write(div_el.get("data-artist"))
+        f.write(",")                
+        f.write(div_el.get("data-title"))
+        f.write("\n")
+
+def scrape():
+    """Scrapes rankings from www.billboard.com. Returns None."""
+    print("--- RANK SCRAPING, STARTED --- ")
+    todo, finished = scrape_setup(ISSUEFIN, RANKERROR, RANKFIN)
+    fin_len     = len(finished)
+    todo_len    = len(todo)
+    print("finished:", fin_len)
+    print("todo    :", todo_len)
+
+    rank_count = 0
+    for link in sorted(todo):
+        try:
+            soup = get_soup(link, filter_=DIVS)
+            div_soup = soup.find_all("div")
             for element in div_soup:
                 if has_datatitle(element):
-                    with open(RANKINGS_DIR+file_name, "a+") as rank_file:
-                        rank_file.write(element.get("data-rank"))
-                        rank_file.write("\t")                
-                        rank_file.write(element.get("data-artist"))
-                        rank_file.write("\t")                
-                        rank_file.write(element.get("data-title"))
-                        rank_file.write("\n")
-            print("FINISHED:: ", file_name)
+                    name = format_file_name(link)
+                    save_ranking(name, element)
+            print("Saved:: ", name)
+            save_append_line(link, RANKFIN)
+            rank_count += 1
         except:
-            print("ERROR:: ", file_name)
-            with open(ERRORS_NEW, "a+") as errors:
-                errors.write(issue)
-                errors.write("\n")
-            sleep(6)
+            print("Error:", link)
+            save_append_line(link, RANKERROR)
+    print("rank_count:", str(rank_count))
+    print("--- RANK SCRAPING, FINISHED --- ")
+
+if __name__ == "__main__":
+    scrape()

@@ -165,7 +165,6 @@ def scrape_setup_song(prev_stage_dir, cur_err, cur_fin):
 
 
 
-
 # works if Stop().stop_scraping is called, but not effective in tkinter for stopping a process/thread?
 class Stop():
     stop = False

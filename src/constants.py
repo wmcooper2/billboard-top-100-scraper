@@ -11,12 +11,14 @@ A_TAGS              = SoupStrainer("a")
 DIVS                = SoupStrainer("div")
 DATADIR             = CWD+"/../data/"
 
-ERRORS              = CWD+"/../errors.txt"
-ERRORS_NEW          = CWD+"/../errors_new.txt"
-RANKINGS_DIR        = CWD+"/../rankings/"
+#ERRORS              = CWD+"/../errors.txt"
+#ERRORSNEW           = CWD+"/../errors_new.txt"
+RANKINGDIR          = CWD+"/../rankings/"
 
 ISSUEERROR          = DATADIR+"issueerror.txt"
 ISSUEFIN            = DATADIR+"issuefin.txt"
+RANKERROR           = DATADIR+"rankerror.txt"
+RANKFIN             = DATADIR+"rankfin.txt"
 SUBCATEGORYERROR    = DATADIR+"subcategoryerror.txt"
 SUBCATEGORYFIN      = DATADIR+"subcategoryfin.txt"
 YEARERROR           = DATADIR+"yearerror.txt"
@@ -24,5 +26,5 @@ YEARFIN             = DATADIR+"yearfin.txt"
 
 #urls
 HOMEPAGE            = "https://www.billboard.com"
-YEARSPAGE           = HOMEPAGE+"/archive/charts"
+YEARSPAGE           = HOMEPAGE+"/archive/charts"    #factor out? or replace?
 
