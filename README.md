@@ -6,14 +6,17 @@ The data will be used to help filter selections already scraped from `www.lyrics
 The most popular songs have the greatest likelihood of being interesting to EFL students.
 
 ### Operation (GUI not finished)
-1. start the GUI
-2. click the stages from top to bottom.
+1. Make sure the external database is connected (my personal device "MONTHLY"). (was the old testdata dir?)
+2. start the GUI
+3. click the stages from top to bottom.
 
 # Developer Notes
 * This program creates directories and writes to files in those created directories.
 * Below is some important points for scraping from this site.
 * The address system changes a little through the site.
-* The saved results are always in valid urls (you can copy/paste directly into a browser)
+* The saved results, up to but not including the last stage, are always in valid urls (you can copy/paste directly into a browser)
+* The last stage's results are plain text files with comma separated values
+* The GUI buttons start subprocesses because tkinter is not thread safe.
 
 ### Process Flow
 * scrapeyears.py
@@ -57,4 +60,3 @@ The most popular songs have the greatest likelihood of being interesting to EFL 
 
 ### Other Notes
 * This is will be very similar in operation to the Lyric Scraper program.
-* There are some differences with how the data is formatted from the billboard website (XML)

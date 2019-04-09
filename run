@@ -1,2 +1,2 @@
 #!/bin/bash
-python3 src/billboardtop100.py
+python3 src/billboardtop100gui.py
