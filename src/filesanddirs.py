@@ -10,27 +10,31 @@ from constants import DIRS
 from constants import FILES
 
 
-def make_dirs():
+def Make_dirs() -> None:
     """Makes the dirs needed for the program. Returns None."""
     for d in DIRS:
         path = Path(d)
         if not check(path):
             path.mkdir()
             print("Created:", str(path))
-        else: print("Exists:", str(path))
-
+        else:
+            print("Exists:", str(path))
+    return None
             
-def make_files():
+
+def make_files() -> None:
     """Makes the files needed for the program. Returns None."""
     for f in FILES:
         path = Path(f)
         if not check(path):
             path.touch()
             print("Created:", str(path))
-        else: print("Exists:", str(path))
+        else:
+            print("Exists:", str(path))
+    return None
 
 
-def check(string):
+def check(string: Text) -> bool:
     """Checks for file/dir existence. Returns Boolean."""
     return Path(string).exists()
 

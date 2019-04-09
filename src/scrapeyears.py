@@ -13,7 +13,7 @@ from scrapeutil import get_hrefs
 from scrapeutil import save
 
 
-def scrape():
+def scrape() -> None:
     """Scrapes the year-links from www.billboard.com. Returns None."""
     print("--- SCRAPING YEARS, STARTED ---")
     soup = get_soup(YEAR_PAGE, filter_=A_TAGS)
@@ -22,6 +22,7 @@ def scrape():
     links = list(map(lambda x: HOME_PAGE + x, links))
     save(links, YEAR_FIN)
     print("--- SCRAPING YEARS, FINISHED ---")
+    return None
 
 
 if __name__ == "__main__":

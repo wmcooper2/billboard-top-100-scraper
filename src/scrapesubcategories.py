@@ -28,7 +28,7 @@ from scrapeutil import save_append_line
 from scrapeutil import scrape_setup
 
 
-def scrape():
+def scrape() -> None:
     """Scrape the subcategories from www.billboard.com. Returns None."""
     print("--- SCRAPE SUBCATEGORIES, STARTED ---")
     todo, finished = scrape_setup(YEAR_FIN, SUB_CATEGORY_FIN)
@@ -55,7 +55,7 @@ def scrape():
     save(allurls, SUB_CATEGORY_FIN)
     save(list(set(errors)), SUB_CATEGORY_ERR)
     print("--- SCRAPE SUBCATEGORIES, FINISHED ---")
-
+    return None
 
 if __name__ == "__main__":
     scrape()

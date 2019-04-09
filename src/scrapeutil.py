@@ -8,6 +8,8 @@ from pathlib import Path
 import re
 import subprocess as sp
 from time import sleep
+from typing import List
+from typing import Set
 from typing import Text
 from typing import Tuple
 
@@ -36,7 +38,7 @@ def ensure_exists(string: Text) -> None:
     return None
 
 
-def count_all_lines(file_):
+def count_all_lines(file_: Text) -> None:
     """Counts all lines in file_. Returns Integer."""
     with open(file_, "r") as f:
         return len(f.readlines())
@@ -50,18 +52,18 @@ def count_files(dir_: Text) -> int:
         stdout=sp.PIPE, stderr=sp.PIPE).stdout.strip()
 
 
-def count_unique_lines(file_):
+def count_unique_lines(file_: Text) -> int:
     """Counts unique lines in 'file_'. Returns Integer."""
     with open(file_, "r") as f:
         return len(set(f.readlines()))
 
 
-def format_artist_link(href):
+def format_artist_link(href: Any) -> Text:
     """Formats URL for the artist. Returns String."""
     return HOME_PAGE+"/"+href.get("href")
 
 
-def format_file_name(url):
+def format_file_name(url: Text) -> Text:
     """Formats a file name. Returns String."""
     file_parts = url.split("/")
     return "_".join(file_parts[-2:])+".txt"
@@ -72,29 +74,34 @@ def format_regex_string(year: Text) -> Text:
     return "\/archive\/charts\/"+year+"\/"
 
 
-def get_hrefs(linklist):
+def format_search_string(group: Text, subgroup: Text) -> Text:
+    """Formats the search string for the regex. Returns String."""
+    return "/{0}/{1}/".format(str(group), str(subgroup))
+
+
+def get_hrefs(linklist: Any) -> List[Text]:
     """Gets all href values from 'linklist'. Returns List."""
     return list(map(lambda link: link.get("href"), linklist))
 
 
-def get_links(soup, string):
+def get_links(soup: Any, string: Text) -> Any:
     """Gets hrefs containing 'string' from 'soup'. Returns List."""
     return soup.find_all(href=re.compile(string))
 
 
-def get_soup(link, filter_=None):
+def get_soup(link: Text, filter_: Any = None) -> Any:
     """Gets soup from a link. Returns BeautifulSoup object."""
     request = persistent_request(link)
     return BeautifulSoup(request.content, "html.parser", 
         parse_only=filter_)
 
 
-def get_year(url):
+def get_year(url: Text) -> Text:
     """Gets the year from 'url'. Returns String"""
     return str(Path(url).parts[-1])
 
 
-def has_data_title(tag):
+def has_data_title(tag: Any) -> bool:
     """Checks if a tag has 'data-title' in it. Returns Boolean.'"""
     return tag.has_attr("data-title") 
 
@@ -105,7 +112,7 @@ def load_file_list(file_: Text) -> List[Text]:
         return [line.strip() for line in f.readlines()]
 
 
-def persistent_request(link):
+def persistent_request(link: Text) -> Any:
     """Persistently makes a request. Returns Request object."""
     request = simple_request(link)
     if not request.status_code == 200:
@@ -113,23 +120,25 @@ def persistent_request(link):
     return request
 
 
-def save(list_, location):
+def save(list_: List[Text], location: Text) -> None:
     """Writes 'list_' to 'location' as txt file. Returns None."""
     with open(location, "w+") as f:
         for element in sorted(list_):
             f.write(element)
             f.write("\n")
+    return None
 
 
-def save_lyrics(list_, location):
+def save_lyrics(list_: List[Text], location: Text) -> None:
     """Writes 'list_' to 'location' as txt file. Returns None."""
     with open(location, "w+") as f:
         for element in list_:
             f.write(element)
             f.write("\n")
+    return None
 
 
-def save_append(list_, location):
+def save_append(list_: List[Text], location: Text) -> None:
     """Appends 'list_' to 'location' as txt file. Returns None."""
     with open(location, "a+") as f:
         for element in list_:
@@ -137,14 +146,15 @@ def save_append(list_, location):
             f.write("\n")
 
 
-def save_append_line(string, location):
+def save_append_line(string: Text, location: Text) -> None:
     """Appends 'string' to location's text file. Returns None."""
     with open(location, "a+") as f:
         f.write(string)
         f.write("\n")
+    return None
 
 
-def save_ranking(file_, div_el):
+def save_ranking(file_: Text, div_el: Any) -> None:
     """Appends ranking to 'file'. Returns None."""
     with open(RANKING_DIR+file_, "a+") as f:
         f.write(div_el.get("data-rank"))
@@ -153,7 +163,7 @@ def save_ranking(file_, div_el):
         f.write(",")                
         f.write(div_el.get("data-title"))
         f.write("\n")
-
+    return None
 
 def scrape_setup(prev_fin: Text,
                  cur_fin: Text) -> Tuple[List[Text], List[Text]]:
@@ -167,12 +177,12 @@ def scrape_setup(prev_fin: Text,
     return (todo.difference(finished), list(finished))
 
 
-def simple_request(link):
+def simple_request(link: Text) -> Any:
     """Makes only one request attempt. Returns Request object."""
     return requests.get(link)
 
     
-def three_requests(link):
+def three_requests(link: Text) -> Any:
     """Makes up to 3 request attempts. Returns Request object."""
     errors = 0
     request = simple_request(link)

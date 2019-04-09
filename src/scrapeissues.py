@@ -5,12 +5,18 @@
 # stand lib
 from pathlib import Path
 from pprint import pprint
+from typing import List
+from typing import Set
+from typing import Text
+from typing import Tuple
 
 # custom
+from constants import A_TAGS
 from constants import HOME_PAGE
 from constants import ISSUE_ERR
 from constants import ISSUE_FIN
 from constants import SUB_CATEGORY_FIN
+from scrapeutil import format_search_string
 from scrapeutil import get_hrefs
 from scrapeutil import get_links
 from scrapeutil import get_soup
@@ -20,12 +26,7 @@ from scrapeutil import save_append
 from scrapeutil import scrape_setup
 
 
-def format_search_string(str1, str2):
-    """Formats the search string for the regex. Returns String."""
-    return "/{0}/{1}/".format(str(str1), str(str2))
-
-
-def scrape():
+def scrape() -> None:
     """Scrapes links from issue-date pages from www.billboard.com. 
         Returns None."""
     print("--- ISSUE DATE SCRAPING, STARTED --- ")
@@ -36,7 +37,7 @@ def scrape():
     print("todo    :", todo_len)
 
     errors = load_file_list(ISSUE_ERR)
-    for link in sorted(todo):
+    for link in todo:
         try:
             soup = get_soup(link, filter_=A_TAGS)
 
@@ -56,7 +57,7 @@ def scrape():
             print("Stopped manually.")
     save(errors, list(set(ISSUE_ERR)))
     print("--- ISSUE DATE SCRAPING, FINISHED --- ")
-
+    return None
 
 if __name__ == "__main__":
     scrape()

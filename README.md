@@ -1,13 +1,13 @@
 # Billboard Top 100 Archive Scraper (README not finished)
-A GUI tool to scrape song records from www.billboard100.com.
+A CLI tool to scrape song records from www.billboard100.com.
 
 ## Purpose
 The data will be used to help filter selections already scraped from `www.lyrics.com` as part of a larger project.
 The most popular songs have the greatest likelihood of being interesting to EFL students.
 
-### Operation (GUI not finished)
-1. Make sure the external database is connected (my personal device "MONTHLY"). (was the old testdata dir?)
-2. start the GUI
+### Operation (CLI not finished)
+1. Make sure the external database is connected (my personal device "WEEKLY"). (was the old testdata dir?)
+2. Run `src/scrape*.py`
 3. click the stages from top to bottom.
 
 # Developer Notes
@@ -16,9 +16,8 @@ The most popular songs have the greatest likelihood of being interesting to EFL 
 * The address system changes a little through the site.
 * The saved results, up to but not including the last stage, are always in valid urls (you can copy/paste directly into a browser)
 * The last stage's results are plain text files with comma separated values
-* The GUI buttons start subprocesses because tkinter is not thread safe.
 
-### Process Flow
+## Main Process Flow
 * scrapeyears.py
 * scrapesubcategories.py
 * scrapeissues.py
@@ -59,4 +58,4 @@ The most popular songs have the greatest likelihood of being interesting to EFL 
     * data-title="Tears On My Pillow" 
 
 ### Other Notes
-* This is will be very similar in operation to the Lyric Scraper program.
+* This is will be very similar in operation to the Lyric Scraper program. It uses many of the same functions.

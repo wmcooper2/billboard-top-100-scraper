@@ -17,7 +17,7 @@ from scrapeutil import save_ranking
 from scrapeutil import scrape_setup
 
 
-def scrape():
+def scrape() -> None:
     """Scrapes rankings from www.billboard.com. Returns None."""
     print("--- RANK SCRAPING, STARTED --- ")
     todo, finished = scrape_setup(ISSUE_FIN, RANK_FIN)
@@ -36,16 +36,20 @@ def scrape():
                 if has_data_title(element):
                     name = format_file_name(link)
                     save_ranking(name, element)
-            print("Saved:: ", name)
             save_append_line(link, RANK_FIN)
             rank_count += 1
-        except:
-            print("Error:", link)
+        except AttributeError:
             errors.append(link)
+        except IndexError:
+            errors.append(link)
+        except KeyboardInterrupt:
+            print("Stopped manually.")
+            save(list(set(errors)), RANK_ERR)
+            quit()
     save(list(set(errors)), RANK_ERR)
     print("rank_count:", str(rank_count))
     print("--- RANK SCRAPING, FINISHED --- ")
-
+    return None
 
 if __name__ == "__main__":
     scrape()
