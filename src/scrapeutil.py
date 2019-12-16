@@ -8,10 +8,7 @@ from pathlib import Path
 import re
 import subprocess as sp
 from time import sleep
-from typing import List
-from typing import Set
-from typing import Text
-from typing import Tuple
+from typing import Any, List, Set, Text, Tuple
 
 # 3rd party
 from bs4 import BeautifulSoup
@@ -19,8 +16,7 @@ from bs4 import SoupStrainer
 import requests
 
 # custom
-from constants import HOME_PAGE
-from constants import SLEEP_TIME
+from constants import HOME_PAGE, SLEEP_TIME, L_WIDTH
 
 filter_ = SoupStrainer("a")
 

@@ -1,2 +1,3 @@
 #!/bin/bash
-python3 src/billboardtop100gui.py
+cd src
+python3 billboardtop100gui.py

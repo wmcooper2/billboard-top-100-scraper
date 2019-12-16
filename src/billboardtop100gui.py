@@ -39,7 +39,7 @@ from scraperankings import scrape as sr
 def draw_y_total():
     """Draws the year total in the GUI. Returns None."""
     y_total = ttk.Label(status_frame, 
-        text=str(count_all_lines(YEARFIN)))
+        text=str(count_all_lines(YEAR_FIN)))
     y_total.grid(column=2, row=1, pady=6, padx=6)
 
 def years():
@@ -69,7 +69,7 @@ main_box.grid(column=0, row=0, pady=6, padx=6)
 
 address_fr = ttk.LabelFrame(main_box, text="Target", width=L_WIDTH)
 address_fr.grid(column=0, row=0, sticky=tk.W, pady=6, padx=6)
-address = ttk.Label(address_fr, text=HOMEPAGE)
+address = ttk.Label(address_fr, text=HOME_PAGE)
 address.grid(column=0, row=0, sticky=tk.W, pady=6, padx=6)
 
 status_frame = ttk.LabelFrame(main_box)
@@ -104,16 +104,16 @@ r_btn.grid(column=0, row=4, pady=6, padx=6)
 
 #errors column
 y_errors = ttk.Label(status_frame, 
-    text=str(count_all_lines(YEARERROR)))
+    text=str(count_all_lines(YEAR_ERR)))
 y_errors.grid(column=1, row=1, pady=6, padx=6)
 s_errors = ttk.Label(status_frame, 
-    text=str(count_all_lines(SUBCATEGORYERROR)))
+    text=str(count_all_lines(SUB_CATEGORY_ERR)))
 s_errors.grid(column=1, row=2, pady=6, padx=6)
 i_errors = ttk.Label(status_frame, 
-    text=str(count_all_lines(ISSUEERROR)))
+    text=str(count_all_lines(ISSUE_ERR)))
 i_errors.grid(column=1, row=3, pady=6, padx=6)
 r_errors = ttk.Label(status_frame, 
-    text=str(count_all_lines(RANKERROR)))
+    text=str(count_all_lines(RANK_ERR)))
 r_errors.grid(column=1, row=4, pady=6, padx=6)
 
 
@@ -123,13 +123,13 @@ r_errors.grid(column=1, row=4, pady=6, padx=6)
 #y_total.grid(column=2, row=1, pady=6, padx=6)
 draw_y_total()
 s_total = ttk.Label(status_frame, 
-    text=str(count_all_lines(SUBCATEGORYFIN)))
+    text=str(count_all_lines(SUB_CATEGORY_FIN)))
 s_total.grid(column=2, row=2, pady=6, padx=6)
 i_total = ttk.Label(status_frame, 
-    text=str(count_all_lines(ISSUEFIN)))
+    text=str(count_all_lines(ISSUE_FIN)))
 i_total.grid(column=2, row=3, pady=6, padx=6)
 r_total = ttk.Label(status_frame, 
-    text=str(count_all_lines(RANKFIN)))
+    text=str(count_all_lines(RANK_FIN)))
 r_total.grid(column=2, row=4, pady=6, padx=6)
 
 #bottom buttons

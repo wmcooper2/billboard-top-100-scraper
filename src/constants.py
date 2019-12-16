@@ -9,6 +9,7 @@ from pathlib import Path
 from bs4 import SoupStrainer
 
 SLEEP_TIME = 1
+L_WIDTH = 30
 
 # Program dirs/files
 CWD = str(Path().cwd())
