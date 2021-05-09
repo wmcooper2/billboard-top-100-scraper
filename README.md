@@ -1,3 +1,6 @@
+_Obsolete: Not actively working on this project anymore. The structure of the website changed..._
+
+
 # Billboard Top 100 Scraper
 Scrape the song rankings from billboard.com
 
@@ -8,10 +11,7 @@ To scrape the archived rankings and use those in a larger project for customizin
 
 ## Operation
 ```bash
-# run
     ./run
-# test
-    ./Test
 ```
 
 ## Tech/Libraries Used

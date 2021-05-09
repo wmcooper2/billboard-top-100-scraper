@@ -3,14 +3,16 @@
 """Scrapes the year-links from the main page."""
 
 # custom
-from constants import A_TAGS
-from constants import HOME_PAGE
-from constants import YEAR_FIN
-from constants import YEAR_PAGE
-from scrapeutil import get_soup
-from scrapeutil import get_links
-from scrapeutil import get_hrefs
-from scrapeutil import save
+from constants import (
+    A_TAGS,
+    HOME_PAGE,
+    YEAR_FIN,
+    YEAR_PAGE)
+from scrapeutil import (
+    get_soup,
+    get_links,
+    get_hrefs,
+    save)
 
 
 def scrape() -> None:
