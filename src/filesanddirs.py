@@ -4,13 +4,14 @@
 
 # stand lib
 from pathlib import Path
+from typing import Text
 
 # custom
 from constants import DIRS
 from constants import FILES
 
 
-def Make_dirs() -> None:
+def make_dirs() -> None:
     """Makes the dirs needed for the program. Returns None."""
     for d in DIRS:
         path = Path(d)
@@ -21,7 +22,6 @@ def Make_dirs() -> None:
             print("Exists:", str(path))
     return None
             
-
 def make_files() -> None:
     """Makes the files needed for the program. Returns None."""
     for f in FILES:
@@ -33,12 +33,6 @@ def make_files() -> None:
             print("Exists:", str(path))
     return None
 
-
 def check(string: Text) -> bool:
     """Checks for file/dir existence. Returns Boolean."""
     return Path(string).exists()
-
-
-if __name__ == "__main__":
-    make_dirs()
-    make_files()

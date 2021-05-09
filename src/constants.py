@@ -15,8 +15,10 @@ L_WIDTH = 30
 CWD = str(Path().cwd())
 A_TAGS = SoupStrainer("a")
 DIVS = SoupStrainer("div")
-DATA_DIR = CWD+"/../.data/"
-RANKING_DIR = CWD+"/../rankings/"
+# DATA_DIR = CWD+"/../.data/"
+# RANKING_DIR = CWD+"/../rankings/"
+DATA_DIR = CWD+"/data/"
+RANKING_DIR = CWD+"/rankings/"
 
 ISSUE_ERR = DATA_DIR+"issueerror.txt"
 ISSUE_FIN = DATA_DIR+"issuefin.txt"

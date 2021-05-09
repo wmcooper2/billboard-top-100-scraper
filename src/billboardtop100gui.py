@@ -11,11 +11,21 @@ from tkinter import ttk
 
 # custom
 from constants import *
-from scrapeutil import *
+# from scrapeutil import *
+from filesanddirs import make_dirs, make_files
+from scrapeutil import (buttontest, count_all_lines)
 from scrapeyears import scrape as sy
 from scrapesubcategories import scrape as ss
 from scrapeissues import scrape as si
 from scraperankings import scrape as sr
+
+
+
+#Setup program hierarchy
+make_dirs()
+make_files()
+
+
 
 #def redraw_category_values():
 #    """Redraws the category values. Returns None."""

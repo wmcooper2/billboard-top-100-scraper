@@ -26,19 +26,10 @@ def buttontest() -> None:
     print("button works")
     return None
 
-
-def ensure_exists(string: Text) -> None:
-    """Makes 'string' dir if doesn't exist. Returns None."""
-    if not Path(string).exists():
-        Path(string).mkdir()
-    return None
-
-
-def count_all_lines(file_: Text) -> None:
+def count_all_lines(file_: Text) -> int:
     """Counts all lines in file_. Returns Integer."""
     with open(file_, "r") as f:
         return len(f.readlines())
-
 
 def count_files(dir_: Text) -> int:
     """Counts files in 'dir_'. Returns Integer."""
@@ -47,38 +38,40 @@ def count_files(dir_: Text) -> int:
     return sp.run(cmd, encoding="utf-8", shell=True,
         stdout=sp.PIPE, stderr=sp.PIPE).stdout.strip()
 
-
 def count_unique_lines(file_: Text) -> int:
     """Counts unique lines in 'file_'. Returns Integer."""
     with open(file_, "r") as f:
         return len(set(f.readlines()))
 
+def directory_setup() -> None:
+    """Creates needed dirs and files for the program. Returns None"""
+
+def ensure_exists(string: Text) -> None:
+    """Makes 'string' dir if doesn't exist. Returns None."""
+    if not Path(string).exists():
+        Path(string).mkdir()
+    return None
 
 def format_artist_link(href: Any) -> Text:
     """Formats URL for the artist. Returns String."""
     return HOME_PAGE+"/"+href.get("href")
-
 
 def format_file_name(url: Text) -> Text:
     """Formats a file name. Returns String."""
     file_parts = url.split("/")
     return "_".join(file_parts[-2:])+".txt"
 
-
 def format_regex_string(year: Text) -> Text:
     """Formats regex string. Returns String."""
     return "\/archive\/charts\/"+year+"\/"
-
 
 def format_search_string(group: Text, subgroup: Text) -> Text:
     """Formats the search string for the regex. Returns String."""
     return "/{0}/{1}/".format(str(group), str(subgroup))
 
-
 def get_hrefs(linklist: Any) -> List[Text]:
     """Gets all href values from 'linklist'. Returns List."""
     return list(map(lambda link: link.get("href"), linklist))
-
 
 def get_links(soup: Any, string: Text) -> Any:
     """Gets hrefs containing 'string' from 'soup'. Returns List."""
